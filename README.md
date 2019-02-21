@@ -75,5 +75,5 @@ public class UserServiceImpl  {
 
 
 #### 自动化配置
-所谓自动化配置是利用SpringBoot的autoconfigure进行实现。之前写过详细的文章来实战SpringBoot的自动化配置,想仔细料及的,可以参考下文。
+所谓自动化配置是利用SpringBoot的autoconfigure进行实现。之前写过详细的文章来实战SpringBoot的自动化配置,想仔细了解的,可以参考下文。
 [SpringBoot可插拔开箱即用之组件开发](https://blog.springlearn.cn/posts/64919/)
