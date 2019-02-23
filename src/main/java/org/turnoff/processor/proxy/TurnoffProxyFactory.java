@@ -13,36 +13,30 @@ import org.springframework.aop.support.annotation.AnnotationMatchingPointcut;
  */
 public class TurnoffProxyFactory {
 
-  private final AnnotationMatchingPointcut pointcut = AnnotationMatchingPointcut.forMethodAnnotation(TurnoffCommand.class);
+    private final AnnotationMatchingPointcut pointcut = AnnotationMatchingPointcut.forMethodAnnotation(TurnoffCommand.class);
 
-  private CircuitBreakerHandlerInvoker circuitBreakerHandlerInvoker=new CircuitBreakerHandlerInvoker();
+    private CircuitBreakerHandlerInvoker circuitBreakerHandlerInvoker = new CircuitBreakerHandlerInvoker();
 
-  public Object getCglibProxy(Object target) {
-    return cglibProxy(target, pointcut);
-  }
+    public Object getCglibProxy(Object target) {
+        return getProxy(target, pointcut, false);
+    }
 
-  public Object getJdkProxy(Object target) {
-    return jdkProxy(target, pointcut);
-  }
+    public Object getJdkProxy(Object target) {
+        return getProxy(target, pointcut, true);
+    }
 
-  private Object cglibProxy(Object target, Pointcut pointcut) {
-    DefaultPointcutAdvisor advisor = new DefaultPointcutAdvisor();
-    advisor.setPointcut(pointcut);
-    advisor.setAdvice(circuitBreakerHandlerInvoker);
-    ProxyFactory weaver = new ProxyFactory(target);
-    weaver.addAdvisor(advisor);
-    return weaver.getProxy();
+    private Object getProxy(Object target, Pointcut pointcut, boolean isJdkProxy) {
+        DefaultPointcutAdvisor advisor = new DefaultPointcutAdvisor();
+        advisor.setPointcut(pointcut);
+        advisor.setAdvice(circuitBreakerHandlerInvoker);
+        ProxyFactory weaver = new ProxyFactory(target);
+        weaver.addAdvisor(advisor);
+        if (isJdkProxy) {
+            weaver.setInterfaces(target.getClass().getInterfaces());
+        }
+        return weaver.getProxy();
 
-  }
+    }
 
-  private Object jdkProxy(Object target, Pointcut pointcut) {
-    DefaultPointcutAdvisor advisor = new DefaultPointcutAdvisor();
-    advisor.setPointcut(pointcut);
-    advisor.setAdvice(circuitBreakerHandlerInvoker);
-    ProxyFactory weaver = new ProxyFactory(target);
-    weaver.addAdvisor(advisor);
-    weaver.setInterfaces(target.getClass().getInterfaces());
-    return weaver.getProxy();
-  }
 
 }

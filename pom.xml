@@ -8,9 +8,16 @@
     <artifactId>turnoff-spring-boot-starter</artifactId>
     <version>1.0.1</version>
 
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
     <properties>
         <spring.version>4.3.18.RELEASE</spring.version>
     </properties>
+
 
     <dependencies>
 
