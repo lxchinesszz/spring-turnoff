@@ -6,4 +6,4 @@ org/turnoff/processor/annotation/TurnoffAutoConfiguration.class
 org/turnoff/processor/core/TurnoffCommandInvoker.class
 org/turnoff/processor/CircuitBreakerBeanPostProcessor.class
 org/turnoff/processor/annotation/TurnoffCommand.class
-org/turnoff/processor/proxy/HystrixProxyFactory.class
+org/turnoff/processor/proxy/TurnoffProxyFactory.class

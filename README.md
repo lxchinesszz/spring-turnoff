@@ -8,6 +8,8 @@
 
 `Turnoff` 就是简化代码而产生的,通过类似于`Hystrix`的注解方法,来实现相同的功能,`Turnoff`主要是利用`BeanPostProcessor`后置处理器来完成,代码非常简单,只依赖`Spring`,无论是`Dubbo分布式`还是`SpringCloud分布式`,还是单体应用都可以使用。
 
+**声明**:
+    如需定制新功能,或者关于项目有好的想法,可以联系我。
 
 ## 目录
 
@@ -28,7 +30,7 @@
 ```
   <!--熔断-->
         <dependency>
-            <groupId>org.turnoff.spring.boot</groupId>
+            <groupId>com.github.lxchinesszz</groupId>
             <artifactId>turnoff-spring-boot-starter</artifactId>
             <version>1.0.1</version>
         </dependency>
